@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="PlayShelf — аренда настольных игр с доставкой. Выбирайте игру, играйте дома, а мы привезём и заберём коробку.">
+<title>PlayShelf — аренда настольных игр</title>
+<style>
+:root{
+  --night:#25251f;--muted:#77766d;--paper:#f4f0e6;--white:#fffdf7;
+  --tomato:#d95c3d;--mustard:#e6b84f;--sage:#a8b49a;--rule:#dcd6c8;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--night);font-family:Georgia,"Times New Roman",serif;line-height:1.55}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1160px,calc(100% - 48px));margin:auto}
+header{padding:17px 0;border-bottom:1px solid var(--rule);background:var(--paper)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo{font-family:Arial,sans-serif;font-weight:900;font-size:21px;letter-spacing:-1.2px}.brand-mark{display:inline-grid;place-items:center;width:29px;height:29px;margin-right:7px;background:var(--tomato);color:#fff!important;vertical-align:middle;border-radius:50%;vertical-align:middle;box-shadow:inset 0 0 0 2px rgba(255,255,255,.28)}.brand-mark svg{display:block;color:#fff}
+.logo span{color:var(--tomato)}
+nav{display:flex;gap:25px;font:600 13px Arial,sans-serif;color:var(--muted)}
+nav a:hover{color:var(--tomato)}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 21px;background:var(--tomato);color:#fff;border:1px solid var(--tomato);font:700 13px Arial,sans-serif;letter-spacing:.2px;cursor:pointer;transition:background .18s,color .18s}
+.btn:hover{background:var(--night);border-color:var(--night)}
+.btn.dark{background:transparent;color:var(--night);border-color:var(--night)}
+.btn.dark:hover{background:var(--night);color:#fff}
+.hero{padding:74px 0 62px;border-bottom:1px solid var(--rule)}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:0;align-items:center}
+h1,h2,h3,p{margin-top:0}
+h1{font-size:clamp(54px,7vw,91px);line-height:.94;letter-spacing:-4px;font-weight:500;margin:20px 0 24px;max-width:650px}
+.hero p{font-size:19px;color:#5f5e56;max-width:510px}
+.hero-actions{display:flex;gap:11px;flex-wrap:wrap;margin-top:28px}
+.hero-note{font:12px Arial,sans-serif!important;color:var(--muted)!important;margin-top:18px}
+
+
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:42px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.stat{padding:15px 12px 13px 0}.stat+.stat{padding-left:16px;border-left:1px solid var(--rule)}
+.stat b{display:block;font:700 23px Arial,sans-serif;letter-spacing:-1px}.stat span{font:12px Arial,sans-serif;color:var(--muted)}
+section{padding:72px 0}
+.section-head{max-width:680px;margin-bottom:34px}
+.kicker{font:700 11px Arial,sans-serif;text-transform:uppercase;letter-spacing:2px;color:var(--tomato)}
+h2{font-size:clamp(34px,4.5vw,54px);line-height:1.02;letter-spacing:-1.8px;font-weight:500;margin:12px 0 14px}
+.section-head p{color:var(--muted);font-size:16px;max-width:590px}
+.features{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.feature{padding:23px 19px 23px 0}.feature+.feature{padding-left:19px;border-left:1px solid var(--rule)}
+.feature-mark{width:42px;height:42px;margin-bottom:18px;color:var(--tomato);background:transparent;border:0;padding:0}.feature-mark svg{width:100%;height:100%;display:block}
+.feature h3,.price h3{font-size:20px;font-weight:500;margin:0 0 9px}
+.feature p,.price p{font-size:14px;color:var(--muted);margin:0}
+.prices{background:#e9e5d9}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.price{background:var(--white);padding:27px;min-height:220px;border:1px solid var(--rule);display:flex;flex-direction:column;align-items:flex-start}
+.price.featured{background:var(--night);color:var(--white);border-color:var(--night)}
+.price.featured p,.price.featured small{color:#c7c4b9}
+.price .amount{font:700 36px Arial,sans-serif;letter-spacing:-1.5px;margin:25px 0 3px}
+.price small{font:12px Arial,sans-serif;color:var(--muted);margin-top:auto}
+.under-price{margin:20px 0 0;color:var(--muted);font:13px Arial,sans-serif}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.step{border-top:1px solid var(--night);padding-top:15px}
+.step-num{font:700 11px Arial,sans-serif;color:var(--tomato);letter-spacing:1px}
+.step h3{font-size:21px;font-weight:500;margin:12px 0 7px}
+.step p{font-size:14px;color:var(--muted);margin:0}
+.banner{background:var(--tomato);color:white;padding:40px;display:flex;align-items:center;justify-content:space-between;gap:25px}
+.banner .kicker{color:#ffe0d4}.banner h2{max-width:620px}.banner p{color:#ffe0d4;margin:8px 0 0}
+.banner .btn{background:var(--white);border-color:var(--white);color:var(--night)}.banner .btn:hover{background:var(--night);border-color:var(--night);color:white}
+.faq{display:grid;grid-template-columns:1fr 1fr;gap:0 34px}
+.faq-item{padding:19px 0;border-top:1px solid var(--rule)}
+.faq-item h3{font-size:18px;font-weight:500;margin:0 0 7px}
+.faq-item p{font-size:14px;color:var(--muted);margin:0}
+.order{background:#e9e5d9}
+.order-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:50px;align-items:start}
+.order-copy p{color:var(--muted);font-size:15px}
+.form{background:var(--white);border:1px solid var(--rule);padding:27px;display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}
+label{font:700 12px Arial,sans-serif}
+input,select,textarea{width:100%;padding:12px;border:1px solid #d8d2c6;border-radius:0;font:14px Arial,sans-serif;color:var(--night);background:#fff}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--mustard);outline-offset:1px}
+textarea{min-height:88px;resize:vertical}
+.form-note{font:11px Arial,sans-serif;color:var(--muted);grid-column:1/-1;margin:0}
+.form-result{display:none;grid-column:1/-1;background:#e5eadf;padding:13px;font:13px Arial,sans-serif}
+footer{padding:28px 0;color:var(--muted);font:12px Arial,sans-serif}
+.footer-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media(max-width:850px){
+ nav{display:none}.hero-grid,.order-grid{grid-template-columns:1fr}.hero-grid{gap:18px}
+ .features{grid-template-columns:1fr 1fr}
+ .feature:nth-child(3){border-left:0;padding-left:0}.steps{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+ .wrap{width:calc(100% - 30px)}.hero{padding:48px 0 40px}
+ h1{font-size:57px;letter-spacing:-2.8px}.hero-grid{gap:5px}
+ .stats{margin-top:28px}.stat b{font-size:18px}.stat span{font-size:10px}
+ section{padding:52px 0}.features,.price-grid,.steps,.faq{grid-template-columns:1fr}
+ .feature,.feature+.feature,.feature:nth-child(3){padding:18px 0;border-left:0;border-bottom:1px solid var(--rule)}
+ .price{min-height:190px}.banner{padding:27px;display:block}.banner .btn{margin-top:18px}
+ .form{grid-template-columns:1fr;padding:20px}.field.full,.form-note,.form-result{grid-column:auto}
+}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="logo" href="#"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="7" cy="7" r="1.7" fill="currentColor"/><circle cx="17" cy="7" r="1.7" fill="currentColor"/><circle cx="12" cy="12" r="1.7" fill="currentColor"/><circle cx="7" cy="17" r="1.7" fill="currentColor"/><circle cx="17" cy="17" r="1.7" fill="currentColor"/></svg></span> Play<span>Shelf</span></a>
+  <nav><a href="#about">Преимущества</a><a href="#prices">Цены</a><a href="#how">Как заказать</a><a href="#faq">Вопросы</a></nav>
+  <a class="btn" href="#order">Выбрать игру</a>
+</div></header>
+
+<main>
+<section class="hero">
+ <div class="wrap hero-grid">
+  <div>
+   
+   <h1>Хорошая игра<br>на один вечер.</h1>
+   <p>Выберите коробку, мы привезём её домой. В удобный день заедем и заберём — ничего не придётся хранить.</p>
+   <div class="hero-actions"><a class="btn" href="#order">Подобрать игру</a><a class="btn dark" href="#prices">Посмотреть цены</a></div>
+   <p class="hero-note">Доставка и обратный вывоз по Москве уже входят в цену.</p>
+   <div class="stats">
+    <div class="stat"><b>60 игр</b><span>в стартовом каталоге</span></div>
+    <div class="stat"><b>от 350 ₽</b><span>за аренду на 3 дня</span></div>
+    <div class="stat"><b>1, 3 или 7 дней</b><span>выберите удобный срок</span></div>
+   </div>
+  </div>
+
+ </div>
+</section>
+
+<section id="about"><div class="wrap">
+ <div class="section-head"><span class="kicker">Почему PlayShelf</span><h2>Чтобы вечер сложился</h2><p>Необязательно покупать игру ради пары партий. Попробуйте её дома, а после аренды просто верните курьеру.</p></div>
+ <div class="features">
+  <article class="feature"><div class="feature-mark"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17 45L50 19l33 26v37H17z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M39 82V55h22v27M12 47l38-30 38 30" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M70 27l9 7V20h-9" fill="none" stroke="currentColor" stroke-width="3"/></svg></div><h3>До вашей двери</h3><p>Привезём игру и заберём её после аренды. Доставка по Москве включена.</p></article>
+  <article class="feature"><div class="feature-mark"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="36" cy="34" r="13" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="67" cy="38" r="10" fill="none" stroke="currentColor" stroke-width="3"/><path d="M12 80c2-18 10-27 24-27s23 9 25 27M57 61c4-7 10-10 17-9 9 1 14 9 15 22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M36 28v12m-6-6h12" stroke="currentColor" stroke-width="2"/></svg></div><h3>Подбор под компанию</h3><p>Поможем выбрать игру по возрасту, числу игроков и желаемой длительности партии.</p></article>
+  <article class="feature"><div class="feature-mark"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M23 17h43l13 13v53H23z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M66 17v15h13M34 48l10 10 22-23M34 72h32" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 27v58h49" fill="none" stroke="currentColor" stroke-width="2" opacity=".45"/></svg></div><h3>Проверенный комплект</h3><p>Перед каждой арендой проверяем наличие компонентов и приводим игру в порядок.</p></article>
+  <article class="feature"><div class="feature-mark"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="19" y="25" width="62" height="57" fill="none" stroke="currentColor" stroke-width="3"/><path d="M19 42h62M34 17v16m32-16v16" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M34 55h8m8 0h8m8 0h2M34 68h8m8 0h8" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="M70 8l4 7 8 1-6 5 1 8-7-4-7 4 1-8-6-5 8-1z" fill="#e6b84f" stroke="currentColor" stroke-width="1.5"/></svg></div><h3>Удобный срок</h3><p>Берите игру на 1, 3 или 7 дней. Если не хватило времени — можно продлить.</p></article>
+ </div>
+</div></section>
+
+<section class="prices" id="prices"><div class="wrap">
+ <div class="section-head"><span class="kicker">Стоимость аренды</span><h2>Сколько стоит игра</h2><p>Цена зависит от самой игры. Доставку и обратный вывоз по Москве отдельно оплачивать не нужно.</p></div>
+ <div class="price-grid">
+  <article class="price"><h3>Семейные и детские</h3><p>Лёгкие правила и весёлое время вместе.</p><div class="amount">350 ₽</div><small>за 3 дня</small></article>
+  <article class="price featured"><h3>Игры средней сложности</h3><p>Для друзей, семьи и уютных вечеров.</p><div class="amount">450 ₽</div><small>за 3 дня</small></article>
+  <article class="price"><h3>Большие стратегии</h3><p>Для тех, кто любит продумывать каждый ход.</p><div class="amount">600 ₽</div><small>за 3 дня</small></article>
+ </div>
+ <p class="under-price">Указанные цены — за 3 дня. Стоимость аренды на 1 и 7 дней, продление (100 ₽ за дополнительный день) и условия залога уточняются при подтверждении заказа.</p>
+</div></section>
+
+<section id="how"><div class="wrap">
+ <div class="section-head"><span class="kicker">Как это работает</span><h2>Всего четыре шага</h2></div>
+ <div class="steps">
+  <article class="step"><span class="step-num">ШАГ 01</span><h3>Оставьте заявку</h3><p>Расскажите, для кого выбираете игру и сколько вас будет.</p></article>
+  <article class="step"><span class="step-num">ШАГ 02</span><h3>Выберите игру</h3><p>Мы поможем подобрать вариант и согласуем дату доставки.</p></article>
+  <article class="step"><span class="step-num">ШАГ 03</span><h3>Играйте дома</h3><p>Получите проверенную коробку и наслаждайтесь игрой столько, сколько выбрали: 1, 3 или 7 дней.</p></article>
+  <article class="step"><span class="step-num">ШАГ 04</span><h3>Мы всё заберём</h3><p>Курьер приедет за игрой в согласованное время.</p></article>
+ </div>
+</div></section>
+
+
+
+<section id="faq"><div class="wrap">
+ <div class="section-head"><span class="kicker">Частые вопросы</span><h2>Что важно знать перед арендой</h2></div>
+ <div class="faq">
+  <article class="faq-item"><h3>На какой срок можно взять игру?</h3><p>Можно взять игру на 1, 3 или 7 дней. Стоимость зависит от игры и выбранного срока; точную сумму подтвердим при оформлении заявки.</p></article>
+  <article class="faq-item"><h3>Сколько стоит доставка?</h3><p>Доставка и забор игры по Москве включены в стоимость аренды.</p></article>
+  <article class="faq-item"><h3>Что, если в коробке не хватает деталей?</h3><p>Мы проверяем комплект перед выдачей. При получении рекомендуем вместе с курьером убедиться, что коробка целая.</p></article>
+
+ </div>
+</div></section>
+
+<section class="order" id="order"><div class="wrap order-grid">
+ <div class="order-copy"><span class="kicker">Заявка на аренду</span><h2>Давайте подберём игру</h2><p>Оставьте контакт для связи и выберите игру. Заявка пока никуда не отправляется: сайт соберёт сообщение, которое можно будет скопировать и отправить нам.</p><p><strong>PlayShelf</strong><br>Аренда настольных игр с доставкой по Москве.</p></div>
+ <form class="form" id="requestForm">
+  <div class="field"><label for="phone">Телефон</label><input id="phone" name="phone" type="tel" inputmode="tel" pattern="[+]?[0-9() -]{6,}" title="Введите номер телефона" placeholder="+7 900 123-45-67" required></div>
+    <div class="field"><label for="term">Срок аренды</label><select id="term" name="term"><option>1 день</option><option selected>3 дня</option><option>7 дней</option></select></div>
+  <div class="field"><label for="gameCategory">Категория игры</label><select id="gameCategory" name="gameCategory"><option value="family">Семейные и детские</option><option value="medium" selected>Средней сложности</option><option value="strategy">Большие стратегии</option></select></div>
+  <div class="field"><label for="game">Выберите игру</label><select id="game" name="game" required><option value="">Выберите игру</option></select></div>
+  <button class="btn field full" type="submit">Подготовить заявку</button>
+  <p class="form-note">Нажимая кнопку, вы формируете текст заявки на своём устройстве. Форма не отправляет данные на сервер.</p>
+  <div class="form-result" id="result" role="status"></div>
+ </form>
+</div></section>
+</main>
+<footer><div class="wrap footer-row"><div><a class="logo" href="#"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="7" cy="7" r="1.7" fill="currentColor"/><circle cx="17" cy="7" r="1.7" fill="currentColor"/><circle cx="12" cy="12" r="1.7" fill="currentColor"/><circle cx="7" cy="17" r="1.7" fill="currentColor"/><circle cx="17" cy="17" r="1.7" fill="currentColor"/></svg></span> Play<span>Shelf</span></a><div>Аренда настольных игр с доставкой по Москве</div></div><div>Аренда настольных игр · Москва</div></div></footer>
+<script>
+const gameCatalog={
+ family:['Детективные истории','Доббль','Имаджинариум','Лоскутное королевство','Барабашка','Экивоки'],
+ medium:['Кодовые имена','Каркассон','Билет на поезд','Азул','7 чудес','Крылья'],
+ strategy:['Колонизаторы','Дюна: Империя','Серп','Пандемия','Покорение Марса','Сквозь века']
+};
+const gameCategory=document.getElementById('gameCategory');
+const gameSelect=document.getElementById('game');
+function updateGames(){
+ const games=gameCatalog[gameCategory.value]||[];
+ gameSelect.replaceChildren(new Option('Выберите игру',''), ...games.map(name => new Option(name, name)));
+}
+gameCategory.addEventListener('change',updateGames);updateGames();
+document.getElementById('requestForm').addEventListener('submit', async function(e){
+ e.preventDefault();
+ const d=new FormData(this);
+ const message=`Заявка на аренду «PlayShelf»\nКонтакт: ${d.get('phone')}\nКатегория: ${gameCategory.options[gameCategory.selectedIndex].text}\nИгра: ${d.get('game')||'не выбрана'}\nСрок: ${d.get('term')}`;
+ const result=document.getElementById('result');
+ try{await navigator.clipboard.writeText(message);result.textContent='Заявка скопирована! Теперь отправьте её владельцу проекта удобным способом.'}
+ catch(err){result.textContent=message}
+ result.style.display='block';
+});
+</script>
+</body>
+</html>
